@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import { startTransition, useEffect, useState } from "react";
 
 type WeatherData = {
@@ -16,6 +17,9 @@ type WeatherState =
   | { status: "loading" }
   | { status: "error"; message: string }
   | { status: "success"; data: WeatherData };
+
+const LOFOTEN_IMAGE =
+  "https://www.figma.com/api/mcp/asset/0839140c-d74a-40c1-85b9-b98345dad1d9";
 
 const RAIN_DROPS = Array.from({ length: 60 }, (_, index) => ({
   id: index,
@@ -36,42 +40,15 @@ function formatLocalTime(isoTime: string, timezone: string) {
 function WeatherScene() {
   return (
     <>
-      <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_16%,rgba(255,255,255,0.08),transparent_14%),linear-gradient(180deg,rgba(255,255,255,0.02),transparent_52%)]" />
-      <div className="absolute left-[51%] top-[18%] h-14 w-14 -translate-x-1/2 rounded-full bg-[rgba(183,177,163,0.42)] blur-[1px]" />
-      <div className="absolute left-0 right-0 top-[40%] h-[46%] bg-[linear-gradient(180deg,rgba(255,255,255,0.06),transparent)] opacity-40" />
-      <div
-        className="absolute left-[-12%] top-[14%] h-[58%] w-[46%] bg-[linear-gradient(180deg,rgba(60,66,69,0.92),rgba(28,31,26,0.98))]"
-        style={{
-          clipPath: "polygon(0 100%, 18% 66%, 30% 44%, 45% 20%, 64% 0, 78% 28%, 100% 100%)",
-        }}
+      <Image
+        alt=""
+        aria-hidden="true"
+        className="absolute inset-0 h-full w-full object-cover"
+        fill
+        sizes="(max-width: 640px) 100vw, 400px"
+        src={LOFOTEN_IMAGE}
       />
-      <div
-        className="absolute right-[-14%] top-[16%] h-[54%] w-[48%] bg-[linear-gradient(180deg,rgba(73,78,74,0.88),rgba(32,35,29,0.98))]"
-        style={{
-          clipPath: "polygon(0 100%, 12% 62%, 30% 36%, 56% 14%, 71% 26%, 84% 18%, 100% 100%)",
-        }}
-      />
-      <div
-        className="absolute left-[18%] top-[26%] h-[52%] w-[58%] bg-[linear-gradient(180deg,rgba(118,120,116,0.68),rgba(49,50,46,0.92))]"
-        style={{
-          clipPath: "polygon(0 100%, 12% 74%, 28% 55%, 47% 28%, 62% 42%, 72% 35%, 89% 18%, 100% 100%)",
-        }}
-      />
-      <div
-        className="absolute bottom-[13%] left-[5%] h-[24%] w-[34%] bg-[linear-gradient(180deg,rgba(17,19,18,0.96),rgba(10,12,12,1))]"
-        style={{
-          clipPath: "polygon(0 100%, 8% 78%, 14% 84%, 22% 52%, 29% 84%, 36% 62%, 43% 84%, 50% 45%, 58% 84%, 66% 64%, 74% 86%, 80% 54%, 89% 82%, 100% 100%)",
-        }}
-      />
-      <div
-        className="absolute bottom-[13%] right-[3%] h-[24%] w-[37%] bg-[linear-gradient(180deg,rgba(17,19,18,0.96),rgba(10,12,12,1))]"
-        style={{
-          clipPath: "polygon(0 100%, 6% 70%, 14% 84%, 22% 50%, 30% 82%, 38% 58%, 46% 84%, 55% 46%, 64% 83%, 74% 56%, 83% 82%, 91% 60%, 100% 100%)",
-        }}
-      />
-      <div className="absolute bottom-0 left-0 right-0 h-[26%] bg-[linear-gradient(180deg,rgba(31,34,27,0.34),rgba(12,13,12,0.96))]" />
-      <div className="absolute bottom-[12%] left-0 right-0 h-[12%] bg-[linear-gradient(180deg,rgba(255,255,255,0.08),rgba(255,255,255,0))] opacity-40" />
-      <div className="absolute inset-x-[8%] bottom-[16%] h-[12%] rounded-full bg-[rgba(255,255,255,0.06)] blur-2xl" />
+      <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(9,11,12,0.02),rgba(9,11,12,0.14)_62%,rgba(9,11,12,0.28)_100%)]" />
       {RAIN_DROPS.map((drop) => (
         <span
           key={drop.id}
